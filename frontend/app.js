@@ -1,3 +1,5 @@
+const API = "https://my-music-bot-production-ee78.up.railway.app";
+
 let tracks = [];
 let currentIndex = 0;
 let isPlaying = false;
@@ -5,42 +7,34 @@ let isPlaying = false;
 async function search() {
   const query = document.getElementById("search").value;
 
-  const res = await fetch("http://127.0.0.1:8000/search", {
+  const res = await fetch(`${API}/search`, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({query})
   });
 
   tracks = await res.json();
-  renderTracks(tracks, "results");
-}
 
-async function loadRecommendations() {
-  const res = await fetch("http://127.0.0.1:8000/recommend");
-  const data = await res.json();
-  renderTracks(data, "recommend");
-}
+  const results = document.getElementById("results");
+  results.innerHTML = "";
 
-function renderTracks(list, containerId) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = "";
-
-  list.forEach((track, index) => {
+  tracks.forEach((track, index) => {
     const div = document.createElement("div");
     div.className = "track";
     div.innerText = track.title;
-    div.onclick = () => play(index, list);
-    container.appendChild(div);
+
+    div.onclick = () => play(index);
+
+    results.appendChild(div);
   });
 }
 
-async function play(index, list = tracks) {
+async function play(index) {
   currentIndex = index;
-  tracks = list;
 
   const track = tracks[index];
 
-  const res = await fetch(`http://127.0.0.1:8000/play/${track.id}`);
+  const res = await fetch(`${API}/play/${track.id}`);
   const data = await res.json();
 
   const audio = document.getElementById("audio");
@@ -48,11 +42,11 @@ async function play(index, list = tracks) {
   audio.src = data.audio_url;
   audio.play();
 
-  document.getElementById("nowPlaying").innerText = track.title;
+  document.getElementById("now").innerText = "▶ " + track.title;
   isPlaying = true;
 }
 
-function togglePlay() {
+function toggle() {
   const audio = document.getElementById("audio");
 
   if (isPlaying) {
@@ -77,6 +71,3 @@ function prev() {
 }
 
 document.getElementById("audio").addEventListener("ended", next);
-
-// загрузка рекомендаций при старте
-loadRecommendations();

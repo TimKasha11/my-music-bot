@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>Music App</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,27 +10,14 @@
 <div class="app">
   <h1>🎧 Music</h1>
 
-  <div class="search-bar">
-    <input id="search" placeholder="Search songs..." />
-    <button onclick="search()">Search</button>
-  </div>
+  <input type="text" id="search" placeholder="Поиск треков...">
+  <button onclick="search()">🔍</button>
 
-  <h3>Results</h3>
   <div id="results"></div>
 
-  <h3>Recommended</h3>
-  <div id="recommend"></div>
-
   <div class="player">
-    <div id="nowPlaying">Nothing playing</div>
-
-    <div class="controls">
-      <button onclick="prev()">⏮</button>
-      <button onclick="togglePlay()">⏯</button>
-      <button onclick="next()">⏭</button>
-    </div>
-
-    <audio id="audio"></audio>
+    <p id="now">Ничего не играет</p>
+    <audio id="audio" controls></audio>
   </div>
 </div>
 

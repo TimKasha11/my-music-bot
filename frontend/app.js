@@ -29,17 +29,13 @@ async function search() {
   });
 }
 
-async function play(index) {
+function play(index) {
   currentIndex = index;
 
   const track = tracks[index];
-
-  const res = await fetch(`${API}/play/${track.id}`);
-  const data = await res.json();
-
   const audio = document.getElementById("audio");
 
-  audio.src = data.audio_url;
+  audio.src = `${API}/play/${track.id}`;
   audio.play();
 
   document.getElementById("now").innerText = "▶ " + track.title;

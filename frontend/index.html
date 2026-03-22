@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Music App</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -10,13 +11,22 @@
 <div class="app">
   <h1>🎧 Music</h1>
 
-  <input type="text" id="search" placeholder="Поиск треков...">
-  <button onclick="search()">🔍</button>
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="Поиск треков...">
+    <button onclick="search()">🔍</button>
+  </div>
 
   <div id="results"></div>
 
   <div class="player">
-    <p id="now">Ничего не играет</p>
+    <div id="now">Ничего не играет</div>
+
+    <div class="controls">
+      <button onclick="prev()">⏮</button>
+      <button onclick="toggle()">⏯</button>
+      <button onclick="next()">⏭</button>
+    </div>
+
     <audio id="audio" controls></audio>
   </div>
 </div>

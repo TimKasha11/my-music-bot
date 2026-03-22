@@ -1,0 +1,51 @@
+body {
+  background: #121212;
+  color: white;
+  font-family: Arial;
+}
+
+.app {
+  padding: 15px;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+}
+
+button {
+  padding: 10px;
+  background: #1db954;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.track {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+}
+
+.track:hover {
+  background: #1db954;
+}
+
+.player {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #181818;
+  padding: 10px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
